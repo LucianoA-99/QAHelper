@@ -3,7 +3,7 @@
   "name": "QA Helper",
   "version": "1.0.0",
   "description": "Captura interacciones y genera casos de prueba manuales.",
-  "author": "Tu Nombre",
+  "author": "Luciano",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
