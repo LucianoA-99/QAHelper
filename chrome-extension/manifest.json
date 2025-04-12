@@ -1,25 +1,52 @@
 {
   "manifest_version": 3,
   "name": "QA Helper",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Captura interacciones y genera casos de prueba manuales.",
-  "permissions": ["scripting", "activeTab"],
-  "host_permissions": ["<all_urls>"],
+  "author": "Tu Nombre",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "storage",
+    "downloads"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "action": {
     "default_title": "QA Helper",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"],
+      "css": ["content.css"],
       "run_at": "document_idle"
     }
   ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "minimum_chrome_version": "88"
 }

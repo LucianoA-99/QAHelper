@@ -1,0 +1,40 @@
+/* Estilos para elementos interactivos */
+.qa-highlight {
+  outline: 2px solid #2196F3 !important;
+  outline-offset: 2px !important;
+  transition: outline-color 0.3s ease !important;
+}
+
+.qa-highlight:hover {
+  outline-color: #1976D2 !important;
+}
+
+/* Estilos para tooltips */
+.qa-tooltip {
+  position: fixed;
+  background-color: #2196F3;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 9999;
+  pointer-events: none;
+  transform: translateY(-100%);
+  margin-top: -8px;
+}
+
+/* Estilos para indicadores de cobertura */
+.qa-covered {
+  position: relative;
+}
+
+.qa-covered::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+} 

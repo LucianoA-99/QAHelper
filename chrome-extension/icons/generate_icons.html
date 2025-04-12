@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generar Iconos QA Helper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        canvas {
+            border: 1px solid #ddd;
+            margin: 10px;
+        }
+        .icon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        button:hover {
+            background: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Generar Iconos QA Helper</h1>
+        <div class="icon-container">
+            <canvas id="icon16" width="16" height="16"></canvas>
+            <span>16x16</span>
+        </div>
+        <div class="icon-container">
+            <canvas id="icon48" width="48" height="48"></canvas>
+            <span>48x48</span>
+        </div>
+        <div class="icon-container">
+            <canvas id="icon128" width="128" height="128"></canvas>
+            <span>128x128</span>
+        </div>
+        <button id="download">Descargar Iconos</button>
+    </div>
+
+    <script>
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const center = size / 2;
+            const radius = size * 0.4;
+            
+            // Fondo
+            ctx.fillStyle = '#2196F3';
+            ctx.beginPath();
+            ctx.arc(center, center, radius, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Símbolo QA
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.5}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('QA', center, center);
+            
+            // Borde
+            ctx.strokeStyle = '#1976D2';
+            ctx.lineWidth = size * 0.05;
+            ctx.beginPath();
+            ctx.arc(center, center, radius, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        // Dibujar iconos
+        drawIcon(document.getElementById('icon16'), 16);
+        drawIcon(document.getElementById('icon48'), 48);
+        drawIcon(document.getElementById('icon128'), 128);
+
+        // Función para descargar
+        document.getElementById('download').addEventListener('click', () => {
+            const sizes = [16, 48, 128];
+            sizes.forEach(size => {
+                const canvas = document.getElementById(`icon${size}`);
+                const link = document.createElement('a');
+                link.download = `icon${size}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        });
+    </script>
+</body>
+</html> 

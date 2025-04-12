@@ -1,18 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QA Helper</title>
   <style>
-    body { font-family: Arial; padding: 10px; width: 250px; }
-    button { margin-top: 10px; width: 100%; padding: 10px; }
+    :root {
+      --primary-color: #2196F3;
+      --hover-color: #1976D2;
+      --text-color: #333;
+      --background-color: #fff;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      padding: 15px;
+      width: 300px;
+      margin: 0;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      table-layout: fixed;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      font-size: 0.9em;
+    }
+
+    th {
+      background-color: #f5f5f5;
+      font-weight: 600;
+    }
+
+    td {
+      vertical-align: top;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    h3 {
+      margin: 0;
+      color: var(--primary-color);
+      font-size: 1.2em;
+    }
+
+    button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    button:hover {
+      background-color: var(--hover-color);
+    }
+
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .loading {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #f3f3f3;
+      border-top: 2px solid var(--primary-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .status {
+      font-size: 0.9em;
+      color: #666;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    .error {
+      color: #d32f2f;
+      display: none;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
   </style>
 </head>
 <body>
-  <h3>QA Copilot</h3>
-  <button id="export">Exportar sesión</button>
+  <div class="container">
+    <h3>QA Copilot</h3>
+    <div class="button-group">
+      <button id="export">
+        <span>Exportar sesión</span>
+        <div class="loading"></div>
+      </button>
+      <button id="downloadDOM">
+        <span>Descargar DOM</span>
+        <div class="loading"></div>
+      </button>
+    </div>
+    <div id="status" class="status"></div>
+    <div id="error" class="error"></div>
+  </div>
 
-  <script src="jspdf.umd.min.js"></script>
-  <script src="popup.js"></script>
+  <script src="jspdf.umd.min.js" defer></script>
+  <script src="popup.js" defer></script>
 </body>
 </html>
